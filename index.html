@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptScribe - Extract, Summarize and Export</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>ScriptScribe</h1>
+        <p>Extract, Summarize and Export</p>
+    </header>
+    <div class="container">
+        <section id="homepage">
+            <h2>Welcome to ScriptScribe</h2>
+            <p>Enter your text or upload an image to extract text:</p>
+            <form id="inputForm">
+                <input type="text" placeholder="Enter your text">
+                <input type="file" accept="image/*">
+                <button type="submit">Extract Text</button>
+            </form>
+        </section>
+
+        <section id="extractionPage">
+            <div class="result">
+                <h2>Extracted Text</h2>
+                <p id="extractedText">Placeholder for extracted text.</p>
+                <h2>Summarized Text</h2>
+                <p id="summarizedText">Placeholder for summarized text.</p>
+                <button id="editButton">Edit Summary</button>
+            </div>
+            <div class="export-options">
+                <h2>Export Options</h2>
+                <button id="copyClipboard">Copy to Clipboard</button>
+                <button id="exportPDF">Export as PDF</button>
+                <button id="exportWord">Export to Word</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>About Us</p>
+            <p>FAQ</p>
+            <p>Contact Us</p>
+        </div>
+    </footer>
+</body>
+</html>
