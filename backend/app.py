@@ -1,7 +1,10 @@
-from flask import Flask, request, jsonify, make_response, send_file
+from flask import Flask, request, jsonify, make_response, send_file, redirect, url_for
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 from fpdf import FPDF
 from PIL import Image
+from werkzeug.security import generate_password_hash, check_password_hash
 import cv2
 import datetime
 import heapq
@@ -14,7 +17,73 @@ import textwrap
 app = Flask(__name__)
 CORS(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:testpass@mysql-container:3306/db_name'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = '9a5d47755a8f2e7498ad96ae12cad0ab'
+db = SQLAlchemy(app)
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password_hash = db.Column(db.String(100), nullable=False)
+
+    def __repr__(self):
+        return f"User('{self.username}')"
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.get_json()
+
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({'error': 'Username and password are required'}), 400
+
+    username = data['username']
+    password = data['password']
+
+    existing_user = User.query.filter_by(username=username).first()
+    if existing_user:
+        return jsonify({'error': 'Username already exists'}), 409
+
+    new_user = User(username=username, password=password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({'message': 'User created successfully'}), 201
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    user = User.query.filter_by(username=username).first()
+    if user and user.check_password(password):
+        login_user(user)
+        return jsonify({'message': 'Login successful'}), 200
+    else:
+        return jsonify({'error': 'Invalid username or password'}), 401
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return jsonify({'message': 'Logged out successfully'}), 200
+
 @app.route('/ocr', methods=['POST'])
+@login_required
 def ocr():
     if 'image' not in request.files:
         return jsonify({'error': 'No file uploaded'}), 400
@@ -29,6 +98,7 @@ def ocr():
     return jsonify({'text': recognized_text}), 200
 
 @app.route('/summarize', methods=['POST'])
+@login_required
 def summarize():
     data = request.get_json()
 
@@ -71,6 +141,7 @@ def summarize():
     return jsonify({'summary': summary}), 200
 
 @app.route('/exportpdf', methods=['POST'])
+@login_required
 def exportPdf():
     data = request.get_json()
 
@@ -139,4 +210,5 @@ def process_text(pdf, text, width_text, fontsize_mm):
             pdf.ln()
 
 if __name__ == '__main__':
+    db.create_all()
     app.run(host="0.0.0.0", port=5000, debug=True)

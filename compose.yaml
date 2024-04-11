@@ -11,6 +11,8 @@ services:
       - ./backend:/app
     environment:
       - TZ=UTC
+    depends_on:
+      - mysql
 
   frontend:
     build:
@@ -22,3 +24,16 @@ services:
       - ./frontend:/usr/share/nginx/html
     depends_on:
       - backend
+
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=testpass
+      - MYSQL_DATABASE=db_name
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
