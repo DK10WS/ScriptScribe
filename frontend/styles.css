@@ -29,6 +29,26 @@ footer {
     padding: 0 20px;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#loginSection,
+#signupSection {
+    flex-basis: calc(50% - 10px);
+}
+
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column;
+    }
+
+    #loginSection,
+    #signupSection {
+        flex-basis: 100%;
+    }
+}
 h2 {
     color: #333;
 }

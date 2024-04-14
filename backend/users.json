@@ -3,6 +3,26 @@
         {
             "username": "karan",
             "password": "a33cb0d342f3316a2ed491430e5137d5"
+        },
+        {
+            "username": "test",
+            "password": "64fe1b61a5d6e8f42f2f93ffda53872a"
+        },
+        {
+            "username": "sdfg",
+            "password": "95f587b8fc1c87fe8aec2dd2447a8200"
+        },
+        {
+            "username": "dfg",
+            "password": "a3bb98d01b23a11252c55386e316f537"
+        },
+        {
+            "username": "dfgh",
+            "password": "042aa66576c6866d14a87eb7fa4885ed"
+        },
+        {
+            "username": "qwerty",
+            "password": "ea688ef0cdbc7cf4ef19ee272eba92d3"
         }
     ]
 }

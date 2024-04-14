@@ -77,8 +77,9 @@ signupForm.addEventListener('submit', async (event) => {
     });
 
     const data = await response.json();
+    console.log(data)
 
-    if (response.ok) {
+    if (data["isSuccesful"]) {
         console.log(`user: ${username} signed up`);
         signupSection.classList.add("hidden");
     } else {

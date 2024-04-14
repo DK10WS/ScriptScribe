@@ -37,13 +37,19 @@ def auth():
     data = request.get_json()
 
     if 'username' not in data or 'password' not in data:
-        return jsonify({'error': 'either username or password missing'}), 400
+        return jsonify({
+            'message': 'either username or password missing',
+            'isSuccesful': False
+            }), 200
     
     username = data['username']
     password = data['password']
 
     if not check_user(username, data, "users.json"):
-        return jsonify({'error': 'user does not exist'}), 400
+        return jsonify({
+            'error': 'user does not exist',
+            'isSuccesful': False
+            }), 200
     
     def user_auth(username, password):
         with open("users.json", "r") as file:
@@ -57,22 +63,34 @@ def auth():
         return False
 
     if user_auth(username, password):
-        return jsonify({'success': 'logged in'}), 200
+        return jsonify({
+            'message': 'logged in',
+            'isSuccesful': True
+            }), 200
     else:
-        return jsonify({'error': 'incorrect password'}), 400
+        return jsonify({
+            'message': 'incorrect password',
+            'isSuccesful': False
+            }), 200
     
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
 
     if 'username' not in data or 'password' not in data:
-        return jsonify({'error': 'either username or password missing'}), 400
+        return jsonify({
+            'message': 'either username or password missing',
+            'isSuccesful': False
+        }), 200
 
     username = data['username']
     password = data['password']
 
     if check_user(username, data, "users.json"):
-        return jsonify({'error': 'username already taken'}), 200
+        return jsonify({
+            'error': 'username already taken',
+            'isSuccesful': False
+            }), 200
 
     hashed_pass = salty_pass(password)
 
@@ -88,12 +106,16 @@ def signup():
     with open("users.json", "w") as file:
         json.dump(user_data, file, indent=4)
 
-    return jsonify({'success': 'signed up'}), 200
+    return jsonify({
+        'message': 'signed up',
+        'isSuccesful': True
+        }), 200
 
 @app.route('/ocr', methods=['POST'])
 def ocr():
     if 'image' not in request.files:
-        return jsonify({'error': 'No file uploaded'}), 400
+        return jsonify({
+            'error': 'No file uploaded'}), 400
 
     file = request.files['image']
     img = Image.open(file.stream)
