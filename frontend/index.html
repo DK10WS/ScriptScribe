@@ -4,64 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScriptScribe - Extract, Summarize, Export</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>ScriptScribe</h1>
-        <p>Extract, Summarize, Export</p>
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <h1 class="mb-0">ScriptScribe</h1>
+            <p>Extract, Summarize, Export</p>
+        </div>
     </header>
 
-    <section id="loginSection">
-        <h2>Login</h2>
+    <section id="loginSection" class="bg-light p-4 rounded shadow-sm mb-4">
+        <h2 class="mb-4">Login</h2>
         <form id="loginForm">
-            <input type="text" id="userName" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <button type="submit" id="loginButton">Login</button>
+            <input type="text" id="userName" class="form-control mb-3" placeholder="Username">
+            <input type="password" id="password" class="form-control mb-3" placeholder="Password">
+            <button type="submit" id="loginButton" class="btn btn-primary">Login</button>
         </form>
     </section>
 
-    <section id="signupSection">
-        <h2>Sign Up</h2>
+    <section id="signupSection" class="bg-light p-4 rounded shadow-sm mb-4">
+        <h2 class="mb-4">Sign Up</h2>
         <form id="signupForm">
-            <input type="text" id="signupUsername" placeholder="Username">
-            <input type="password" id="signupPassword" placeholder="Password">
-            <button type="submit" id="signupButton">Sign Up</button>
+            <input type="text" id="signupUsername" class="form-control mb-3" placeholder="Username">
+            <input type="password" id="signupPassword" class="form-control mb-3" placeholder="Password">
+            <button type="submit" id="signupButton" class="btn btn-primary">Sign Up</button>
         </form>
     </section>
 
     <div class="container">
-        <section id="homepage">
+        <section id="homepage" class="mb-4">
             <h2>Welcome to ScriptScribe</h2>
             <p>Enter your text or upload an image to extract text:</p>
             <form id="inputForm">
-                <textarea id="textInput" placeholder="Enter your text"></textarea>
-                <input type="file" id="fileInput" accept="image/*">
-                <button type="submit" id="uploadButton">Extract Text</button>
-                <button type="button" id="summarizeButton">Summarize</button>
+                <textarea id="textInput" class="form-control mb-3" placeholder="Enter your text"></textarea>
+                <input type="file" id="fileInput" class="form-control mb-3" accept="image/*">
+                <button type="submit" id="uploadButton" class="btn btn-primary">Extract Text</button>
+                <button type="button" id="summarizeButton" class="btn btn-primary">Summarize</button>
             </form>
         </section>
 
-        <section id="extractionPage" class="hidden">
-            <div class="result">
-                <h2>Summarized Text</h2>
-                <p id="summarizedText"></p>
-            </div>
-            <div class="export-options">
-                <h2>Export Options</h2>
-                <button id="copyClipboard">Copy to Clipboard</button>
-                <button id="downloadPDF" class="hidden">Download PDF</button>
-            </div>
+        <section id="extractionPage" class="result bg-white rounded shadow-sm p-4 mb-4 d-none">
+            <h2>Summarized Text</h2>
+            <p id="summarizedText"></p>
         </section>
+
+        <div class="export-options bg-white rounded shadow-sm p-4 mb-4 d-none">
+            <h2>Export Options</h2>
+            <button id="copyClipboard" class="btn btn-primary">Copy to Clipboard</button>
+            <button id="downloadPDF" class="btn btn-primary d-none">Download PDF</button>
+        </div>
     </div>
 
-    <footer>
+    <footer class="bg-dark text-white py-4 mt-auto">
         <div class="container">
             <p>About Us</p>
             <p>FAQ</p>
             <p>Contact Us</p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
