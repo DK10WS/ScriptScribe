@@ -12,14 +12,27 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-image: url('lol2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 header, footer {
     background-color: #333;
-    color: #fff;
+    color: orange;
     text-align: center;
     padding: 20px 0;
+    background-color:rgba(0, 0, 0, 0.5);
 }
+.github-link {
+            position: absolute;
+            bottom: 0px;
+            right: 20px; 
+        }
+ .github-link img {
+            width: 100px;
+            height: auto; 
+        }
 
 footer {
     margin-top: auto;
@@ -29,6 +42,10 @@ footer {
     margin-top: 20px;
 }
 
+#homepage p {
+    color: #000;
+    font-size: 20px;
+}
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -43,8 +60,18 @@ p {
     margin-bottom: 1em;
 }
 
+#uploadButton {
+    background-color: #0ffc00; 
+    color:#000;
+}
+#summarizeButton{
+  background-color:#0ffc00;
+  color: #000;
+}
+
 input[type="file"],
 textarea {
+    font-size:15px;
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
