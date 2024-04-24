@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+.title-container h1 {
+     margin: -20px 1px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .title-container {
+        justify-content: center;
+    }
+}
+
+#showUsername {
+  padding: 0 29px;
+}
+
+#logout {
+    cursor: pointer;
+    padding: 0 30px;
+}
+
+footer {
+    margin-top: auto;
+}
+
+#homepage p {
+    margin-top: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="file"]:hover,
+textarea:hover,
+input[type="file"]:focus,
+textarea:focus {
+    border-color: #007bff;
+}
+
+button {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 70vh;
+}
+
+#authSection {
+    width: 400px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#authSection h2 {
+    margin-bottom: 20px;
+}
+
+#authForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#authForm input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.auth-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+#extractionPage h2 {
+    margin-top: 25px;
+}
+
+.export-options h2 {
+    margin-bottom: 10px;
+}
